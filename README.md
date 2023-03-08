@@ -1,4 +1,6 @@
 # presto-event-stream
+A Presto plugin to stream trino events into a Kafka topic.
+
 inspired by 
 * https://github.com/IBM/trino-event-stream
 * https://github.com/aws-samples/emr-presto-query-event-listener
