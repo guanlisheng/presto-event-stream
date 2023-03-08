@@ -35,4 +35,5 @@ We would use [Hudi/Deltastramer](https://hudi.apache.org/docs/hoodie_deltastream
 ```
 
 ## Overall Arch
+![Art of Schema](art_of_schema.png?raw=true "Art of Schema")
 
