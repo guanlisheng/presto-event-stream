@@ -8,7 +8,8 @@ inspired by
 
 ## Install
 
-TODO
+Run `mvn clean package` to build this plugin, then put the plugin file
+`PrestoEventStream-1.0.zip` to the plugin folder of [Presto coordinator](https://prestodb.io/docs/current/develop/event-listener.html?#configuration).
 
 ## Configuration
 
@@ -32,3 +33,6 @@ We would use [Hudi/Deltastramer](https://hudi.apache.org/docs/hoodie_deltastream
 --hoodie-conf bootstrap.servers=broker:9092
 --hoodie-conf hoodie.deltastreamer.schemaprovider.source.schema.file=QueryCompletedEvent.avsc
 ```
+
+## Overall Arch
+
