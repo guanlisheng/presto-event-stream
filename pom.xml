@@ -3,43 +3,43 @@
   <groupId>com.presto</groupId>
   <artifactId>PrestoEventStream</artifactId>
   <version>1.0</version>
+  <packaging>presto-plugin</packaging>
+
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <kafka.version>2.5.1</kafka.version>
+    <kafka.version>2.3.1</kafka.version>
     <avro.version>1.9.2</avro.version>
-    <dep.airlift.version>0.207</dep.airlift.version>
+    <dep.airlift.version>0.205</dep.airlift.version>
     <dep.slice.version>0.38</dep.slice.version>
-
+    <air.java.version>1.8.0-151</air.java.version>
   </properties>
-
 
   <dependencies>
     <dependency>
         <groupId>com.facebook.airlift</groupId>
         <artifactId>log</artifactId>
-        <scope>provided</scope>
         <version>${dep.airlift.version}</version>
     </dependency>
 
-  	<dependency>
-  		<groupId>com.facebook.presto</groupId>
-  		<artifactId>presto-spi</artifactId>
-  		<version>0.275</version>
-  	</dependency>
+    <dependency>
+        <groupId>com.facebook.presto</groupId>
+        <artifactId>presto-spi</artifactId>
+        <version>0.184</version>
+        <scope>provided</scope>
+    </dependency>
 
-
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>slice</artifactId>
-            <scope>provided</scope>
-            <version>${dep.slice.version}</version>
-        </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.14.0</version>
+        <scope>provided</scope>
+    </dependency>
 
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>11.0.2</version>
+      <version>31.1-jre</version>
     </dependency>
 
     <dependency>
@@ -58,9 +58,15 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>com.facebook.presto</groupId>
+                <artifactId>presto-maven-plugin</artifactId>
+                <version>0.4</version>
+                <extensions>true</extensions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.1</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -71,7 +77,7 @@
             <plugin>
                 <groupId>org.apache.avro</groupId>
                 <artifactId>avro-maven-plugin</artifactId>
-			    <version>${avro.version}</version>
+                <version>${avro.version}</version>
                 <executions>
                     <execution>
                         <phase>generate-sources</phase>
