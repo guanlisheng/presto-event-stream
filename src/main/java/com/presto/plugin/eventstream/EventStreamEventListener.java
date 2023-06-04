@@ -21,6 +21,9 @@ import com.facebook.presto.spi.eventlistener.SplitCompletedEvent;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
+import static java.util.stream.Collectors.toList;
+import static java.lang.String.format;
+
 /**
  * An EventListener wraps Kafka producer to send query events to Kafka
  */
@@ -36,7 +39,7 @@ public class EventStreamEventListener
     {
         this.kafkaProducer = kafkaProducer;
     }
-
+/*
     @Override
     public void queryCreated(QueryCreatedEvent queryCreatedEvent)
     {
@@ -61,7 +64,7 @@ public class EventStreamEventListener
         }
         log.debug("Sent queryCreated event. query id %s", queryCreatedEvent.getMetadata().getQueryId());
     }
-
+*/
     @Override
     public void queryCompleted(QueryCompletedEvent queryCompletedEvent)
     {
@@ -77,7 +80,7 @@ public class EventStreamEventListener
                 .setTotalBytes(queryCompletedEvent.getStatistics().getTotalBytes())
                 .setUser(queryCompletedEvent.getContext().getUser().toString())
                 .setCompletedSplits(queryCompletedEvent.getStatistics().getCompletedSplits())
-                .setRuntimeStats(queryCompletedEvent.getStatistics().getRuntimeStats().toString())
+                .setRuntimeStats(queryCompletedEvent.getStatistics().getRuntimeStats().getMetrics().values().stream().map(metric->format("%s: sum=%s", metric.getName(), metric.getSum())).collect(toList()).toString())
                 .build();
         try {
             kafkaProducer.send(
@@ -90,7 +93,7 @@ public class EventStreamEventListener
         }
         log.debug("Sent queryCompleted event. query id %s", queryCompletedEvent.getMetadata().getQueryId());
     }
-
+/*
     @Override
     public void splitCompleted(SplitCompletedEvent splitCompletedEvent)
     {
@@ -111,4 +114,5 @@ public class EventStreamEventListener
         }
         log.debug("Sent splitCompleted event. query id %s", splitCompletedEvent.getQueryId());
     }
+*/
 }
