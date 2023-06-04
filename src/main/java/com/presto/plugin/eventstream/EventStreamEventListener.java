@@ -76,6 +76,8 @@ public class EventStreamEventListener
                 .setTotalRows(queryCompletedEvent.getStatistics().getTotalRows())
                 .setTotalBytes(queryCompletedEvent.getStatistics().getTotalBytes())
                 .setUser(queryCompletedEvent.getContext().getUser().toString())
+                .setCompletedSplits(queryCompletedEvent.getStatistics().getCompletedSplits())
+                .setRuntimeStats(queryCompletedEvent.getStatistics().getRuntimeStats().toString())
                 .build();
         try {
             kafkaProducer.send(

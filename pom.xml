@@ -25,7 +25,7 @@
     <dependency>
         <groupId>com.facebook.presto</groupId>
         <artifactId>presto-spi</artifactId>
-        <version>0.184</version>
+        <version>0.258</version>
         <scope>provided</scope>
     </dependency>
 

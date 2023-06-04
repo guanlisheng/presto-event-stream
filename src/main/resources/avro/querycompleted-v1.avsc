@@ -12,6 +12,8 @@
     { "name": "OutputBytes", "type": "long", "doc": "Output Bytes from Query"},
     { "name": "TotalRows", "type": "long", "doc": "Input Rows from Query"},
     { "name": "TotalBytes", "type": "long", "doc": "Input Bytes from Query"},
-    { "name": "User", "type": "string", "doc": "Input Bytes from Query"}
+    { "name": "User", "type": "string", "doc": "Query User"},
+    { "name": "CompletedSplits", "type": "long", "doc": "Completed Spits from Query"},
+    { "name": "RuntimeStats", "type": "string", "doc": "Runtime Stats in json string"}
   ]
 }
