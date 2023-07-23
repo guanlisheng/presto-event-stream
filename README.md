@@ -22,10 +22,15 @@ key.serializer=org.apache.kafka.common.serialization.StringSerializer
 value.serializer=org.apache.kafka.common.serialization.StringSerializer
 ```
 
+recommend adding the following row in your `etc/catalog/hive.properties`
+```
+hive.verbose-runtime-stats-enabled=true
+```
+
 `Avro` formatter is added to serialize messages generated from QueryCreatedEvent, QueryCompletedEvent. 
 Avro formatted messages would be read as String using the StringSerializer, then it will emit events to the Kafka topic `presto.event`.
 
-## Post event analysis with Presto
+## Post-event analysis with Presto
 We would use [Hudi/Deltastramer](https://hudi.apache.org/docs/hoodie_deltastreamer) to sink the kafka topic easily
 ```
 --schemaprovider-class org.apache.hudi.utilities.schema.FilebasedSchemaProvider
